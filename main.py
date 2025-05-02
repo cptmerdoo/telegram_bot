@@ -1,19 +1,19 @@
+import asyncio
 import os
-import time
 from telegram import Bot
 
-TOKEN = os.getenv("BOT_TOKEN", "BOT_TOKENİNİ_BURAYA_YAZ")
-CHAT_ID = os.getenv("CHAT_ID", "CHAT_IDİNİ_BURAYA_YAZ")
+TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 bot = Bot(token=TOKEN)
 
-def send_message(text):
-    bot.send_message(chat_id=CHAT_ID, text=text)
+async def send_message():
+    await bot.send_message(chat_id=CHAT_ID, text="✅ Bu bir test mesajıdır.")
 
-def main():
+async def main():
     while True:
-        send_message("✅ Bu bir test mesajıdır.")
-        time.sleep(900)
+        await send_message()
+        await asyncio.sleep(900)
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
